@@ -12653,7 +12653,7 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Smooth-the-image">Smooth the image<a class="anchor-link" href="#Smooth-the-image">&#182;</a></h1><p>Gaussian Blur
-<img src="figures/2Dgaussian.png" alt="2D Gaussian" width="150"></p>
+<img src="figures/2dgaussian.png" alt="2D Gaussian" width="150"></p>
 \begin{equation}
 G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2}}}
 \end{equation}<p>Implement in Python:</p>
@@ -13394,7 +13394,7 @@ Implement in Python:</p>
 <li><code>sigma_g</code>: Gaussian kernal standard deviation</li>
 <li><code>alpha</code>: Weight given to new image in running average</li>
 <li><code>thresh</code>: Threshold for detecting motion. </li>
-<li><code>area_thresh</code>: Fraction of ROI required to be in motino to be considered a train</li>
+<li><code>area_thresh</code>: Fraction of ROI required to be in motion to be considered a train</li>
 <li><code>history_length</code>: Number of frames required to be considered a train</li>
 </ul>
 
@@ -13406,11 +13406,11 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resolution">Resolution<a class="anchor-link" href="#Resolution">&#182;</a></h1><p><img src="figures/2Dgaussian.png" alt="2D Gaussian" width="150" align='right'></p>
+<h1 id="Resolution">Resolution<a class="anchor-link" href="#Resolution">&#182;</a></h1><p><img src="figures/2dgaussian.png" alt="2D Gaussian" width="150" align='right'></p>
 <ul>
-<li><code>sigma_g</code> </li>
-<li><code>thresh</code></li>
-<li><code>area_thresh</code> </li>
+<li><code>sigma_g</code>: Gaussian kernal standard deviation</li>
+<li><code>thresh</code>: Threshold for detecting motion. </li>
+<li><code>area_thresh</code>: Fraction of ROI required to be in motino to be considered a train </li>
 </ul>
 
 </div>
@@ -13422,8 +13422,10 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Frame-rate">Frame rate<a class="anchor-link" href="#Frame-rate">&#182;</a></h1><ul>
-<li><code>alpha</code></li>
-<li><code>history_length</code></li>
+<li><p><code>alpha</code>: Weight given to new image in running average</p>
+</li>
+<li><p><code>history_length</code>: Number of frames required to be considered a train</p>
+</li>
 </ul>
 
 </div>
