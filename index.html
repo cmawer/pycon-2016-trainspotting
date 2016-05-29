@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
 
@@ -13,6 +13,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="reveal.js/css/reveal.css">
@@ -12304,7 +12305,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><img src="figures/caltrain_tweet.jpg" alt="Tweet" width="400" style="horizontal-align:middle"></center>
+<center><img src="figures/caltrain_tweet.jpg" alt="Tweet" width="425" style="horizontal-align:middle"></center>
 </div>
 </div>
 </div></section></section><section><section>
@@ -12322,8 +12323,34 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><h1> Train detection </h1></center>
-<center><img src="figures/train_in_window.jpg" alt="Window" align="center" width="400"></center>
+<h1 id="Did-the-train-really-leave?">Did the train really leave?<a class="anchor-link" href="#Did-the-train-really-leave?">&#182;</a></h1><p><br />
+<br />
+<br />
+<img src="figures/caltrain-sign.jpg" alt="Window" align="center" width="400"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Did-the-train-really-leave?">Did the train really leave?<a class="anchor-link" href="#Did-the-train-really-leave?">&#182;</a></h1><p><br />
+<br />
+<br />
+<img src="figures/train_in_window.jpg" alt="Window" align="center" width="400"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Agenda">Agenda<a class="anchor-link" href="#Agenda">&#182;</a></h1><p><img src="figures/talk-roadmap.png" alt="Window" align="left" width="700"></p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -12376,27 +12403,13 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Steps-for-train-detection">Steps for train detection<a class="anchor-link" href="#Steps-for-train-detection">&#182;</a></h1><ol>
-<li>Is something moving? </li>
-<li>Is that moving thing a train? </li>
-<li>In what direction is it moving? </li>
-</ol>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="The-original-video">The original video<a class="anchor-link" href="#The-original-video">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
@@ -12413,9 +12426,79 @@ a.anchor-link {
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" controls>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>original</code></strong>:A list containing a series of frames that make the video</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>frame</code></strong>: A N x M x 3 numpy ndarray containing the blue, green and red intensities for each pixel</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>cv2.imshow()</code></strong>: Displays an input frame </li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>cv2.waitKey()</code></strong>: Waits for a key to be pressed for the specified amount of time, used to introduce delay between frames</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>cv2.destroyWindow()</code></strong>:Will close a window of a given name</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>The original video</h1></center>
+<center><video width="640" height="480" controls>
   <source src="video/orig.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12525,6 +12608,20 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Steps-for-train-detection">Steps for train detection<a class="anchor-link" href="#Steps-for-train-detection">&#182;</a></h1><ol>
+<li>Is something moving? </li>
+<li>Is that moving thing a train? </li>
+<li>In what direction is it moving? </li>
+</ol>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="1.-Is-something-moving?">1. Is something moving?<a class="anchor-link" href="#1.-Is-something-moving?">&#182;</a></h1><ol>
 <li>Develop a model of the background</li>
 <li>Decide if the pixels in the current frame match the background</li>
@@ -12550,7 +12647,7 @@ a.anchor-link {
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="c1"># Convert the frame to one channel (e.g. gray scale)</span>
-    <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n"><strong>gray_frame</strong></span> <span class="o"><strong>=</strong></span> <span class="n"><strong>cv2</strong></span><span class="o"><strong>.</strong></span><span class="n"><strong>cvtColor</strong></span><span class="p"><strong>(</strong></span><span class="n"><strong>frame</strong></span><span class="p"><strong>,</strong></span> <span class="n"><strong>cv2</strong></span><span class="o"><strong>.</strong></span><span class="n"><strong>COLOR_BGR2GRAY</strong></span><span class="p"><strong>)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Gray scale&#39;</span><span class="p">,</span><span class="n">gray_frame</span><span class="p">)</span>
     
@@ -12564,9 +12661,19 @@ a.anchor-link {
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" controls>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Convert to one channel</h1></center>
+<center><video width="640" height="480" controls>
   <source src="video/gray.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12616,7 +12723,7 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="figures/smooth_images.png" alt="AppScreenShots" width="960"></p>
+<center><h1>Smooth the image</h1></center><p><img src="figures/smooth_images.png" alt="AppScreenShots" width="960"></p>
 
 </div>
 </div>
@@ -12642,7 +12749,7 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
     
     <span class="c1"># Apply a Gaussian blur to the gray scale frame </span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n"><strong>smooth_frame</strong></span> <span class="o"><strong>=</strong></span> <span class="n"><strong>cv2</strong></span><span class="o"><strong>.</strong></span><span class="n"><strong>GaussianBlur</strong></span><span class="p"><strong>(</strong></span><span class="n"><strong>gray_frame</strong></span><span class="p"><strong>,</strong></span> <span class="p"><strong>(</strong></span><span class="n"><strong>sigma_g</strong></span><span class="p"><strong>,</strong></span> <span class="n"><strong>sigma_g</strong></span><span class="p"><strong>),</strong></span> <span class="mi"><strong>0</strong></span><span class="p"><strong>)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Smooth&#39;</span><span class="p">,</span> <span class="n">smooth_frame</span><span class="p">)</span>
 
@@ -12656,9 +12763,18 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" align="center" controls>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Smooth the image</h1></center><center><video width="640" height="480" align="center" controls>
   <source src="video/smooth.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12712,6 +12828,11 @@ R(x,y,t) = (1-\alpha)R(x,y,t-1) + \alpha F(x,y,t)
 \end{equation}</p>
 <p>Implement in Python:</p>
 <p><code>cv2.accumulateWeighted(np.float32(smooth_frame), running_avg, alpha)</code></p>
+<ul>
+<li><em>R</em>: Running average </li>
+<li><em>F</em>: Frame being added to the running average</li>
+<li>$\alpha:$ How heavily to weight the new frame in the running average </li>
+</ul>
 
 </div>
 </div>
@@ -12724,7 +12845,7 @@ R(x,y,t) = (1-\alpha)R(x,y,t-1) + \alpha F(x,y,t)
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Running average, <em>R</em> at <em>t</em> is the weighted sum of the running average at <em>t-1</em> and the current frame, <em>F</em>. </li>
-<li>Basically smoothing in time</li>
+<li>Smoothing in time</li>
 </ul>
 
 </div>
@@ -12736,7 +12857,7 @@ R(x,y,t) = (1-\alpha)R(x,y,t-1) + \alpha F(x,y,t)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Calculate-running-average">Calculate running average<a class="anchor-link" href="#Calculate-running-average">&#182;</a></h1>
+<h1 id="Calculate-the-running-average">Calculate the running average<a class="anchor-link" href="#Calculate-the-running-average">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12756,10 +12877,10 @@ R(x,y,t) = (1-\alpha)R(x,y,t-1) + \alpha F(x,y,t)
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="c1"># Otherwise, update running average with new smooth frame</span>
-    <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k"><strong>if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Running average&#39;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">convertScaleAbs</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</span>
 
@@ -12773,9 +12894,19 @@ R(x,y,t) = (1-\alpha)R(x,y,t-1) + \alpha F(x,y,t)
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" align="center" controls>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Calculate the running average</h1></center>
+<center><video width="640" height="480" align="center" controls>
   <source src="video/running.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12879,7 +13010,7 @@ Implement in Python:</p>
         <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
         
     <span class="c1"># Find |difference| between current smoothed frame and running average</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</span>
+    <span class="n"><strong>diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</strong></span>
     
     <span class="c1"># Then add current frame to running average after</span>
     <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
@@ -12896,9 +13027,19 @@ Implement in Python:</p>
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" controls>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Calculate the difference</h1><center>
+<center><video width="640" height="480" controls>
   <source src="video/colordiff.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12985,7 +13126,7 @@ Implement in Python:</p>
     <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
     
     <span class="c1"># For all pixels with a difference &gt; thresh, turn pixel to 1, otherwise 0</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">subtracted</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+    <span class="n"><strong>_</span><span class="p">,</span> <span class="n">subtracted</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Thresholded difference&#39;</span><span class="p">,</span> <span class="n">subtracted</span><span class="p">)</span>
     
@@ -12999,9 +13140,19 @@ Implement in Python:</p>
 </div>
 </div>
 
-</div></section></section><section><section><center><video width="640" height="480" align="center" controls>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Threshold the difference</h1></center>
+<center><video width="640" height="480" align="center" controls>
   <source src="video/thresh.mp4" type="video/mp4">
-</video></center></section><section>
+</video></center>
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -13109,7 +13260,7 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="figures/frame-fraction-with-horizontal.jpg" alt="Area threshold" width="860"></p>
+<p><img src="figures/green-frame-fraction-with-horizontal.jpg" alt="Area threshold" width="860"></p>
 
 </div>
 </div>
@@ -13128,7 +13279,7 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="figures/frame-fraction-with-horizontal-and-vertical.jpg" alt="Area threshold" width="860"></p>
+<p><img src="figures/green-frame-fraction-with-horizontal-and-vertical.jpg" alt="Area threshold" width="860"></p>
 
 </div>
 </div>
@@ -13148,7 +13299,7 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Define-regions-of-interest-(ROI)">Define regions of interest (ROI)<a class="anchor-link" href="#Define-regions-of-interest-(ROI)">&#182;</a></h1><p><img src="figures/roi73c2.jpg" alt="Area threshold" width="860"></p>
+<h1 id="Define-regions-of-interest-(ROI)">Define regions of interest (ROI)<a class="anchor-link" href="#Define-regions-of-interest-(ROI)">&#182;</a></h1><p><img src="figures/roiframe073.jpg" alt="Area threshold" width="860"></p>
 
 </div>
 </div>
@@ -13158,18 +13309,20 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Track-activity-in-ROIs-separately">Track activity in ROIs separately<a class="anchor-link" href="#Track-activity-in-ROIs-separately">&#182;</a></h1>
+<center><h1>Track activity in ROIs separately</h1></center>
+<center><video width="1060" height="460" align="center" controls>
+  <source src="video/green-rois-plus-plot.mp4" type="video/mp4">
+</video></center>
 </div>
 </div>
-</div><center><video width="960" height="360" align="center" controls>
-  <source src="video/rois-plus-plot.mp4" type="video/mp4">
-</video></center></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="figures/left-and-right.jpg" alt="Fraction in motion" width="860"></p>
+<p><center><h1>Track activity in ROIs separately</h1></center>
+<img src="figures/left-and-right.jpg" alt="Fraction in motion" width="860"></p>
 
 </div>
 </div>
@@ -13195,7 +13348,7 @@ Implement in Python:</p>
 <li>The side with the detection for all <em>T</em> indicates the train's direction.</li>
 <li>Reinitialize the <code>history</code> dataframe to detect future trains.</li>
 <li>Return to #2<br>
-<img src="figures/left-and-right.jpg" alt="Area threshold" width="420" align='right'>
+<img src="figures/left-and-right.jpg" alt="Area threshold" width="520" align='right'>
 <img src="figures/train-history.png" alt="Area threshold" width="200" align='left'></li>
 </ol>
 
@@ -13229,7 +13382,7 @@ Implement in Python:</p>
 <center>
 <h1> Detecting motion at night </h1>
 </center>
-<center><img src="figures/infra.jpg" alt="Infrared photography" width="600" style="horizontal-align:middle"></center>
+<center><img src="figures/infra.jpg" alt="Infrared photography" width="450" style="horizontal-align:middle"></center>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13467,10 +13620,9 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><center><h2>Thank you! </h2></p>
-<p><center><img src="figures/projects_image_caltrain.jpg" alt="End" width="500"></center></p>
-<p><center><h2> Chloe Mawer | @chloemawer | chloe@svds.com </h2></p>
-
+<center><h2>Thank you! </h2>
+<center><img src="figures/projects_image_caltrain.jpg" alt="End" width="500"></center>
+<center><h3> Chloe Mawer | @chloemawer | chloe@svds.com </h3></center>
 </div>
 </div>
 </div></section></section><section><section>
