@@ -12425,7 +12425,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
@@ -12442,67 +12442,23 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="fragment">
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong><code>frame</code></strong>: A <em>M</em> x <em>N</em> x 3 numpy ndarray containing the blue, green and red intensities for each of the <em>M</em> x <em>N</em> pixels.</li>
-</ul>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
+<h3 id="Key">Key<a class="anchor-link" href="#Key">&#182;</a></h3><ul>
+<li><strong><code>frame</code></strong>: An image represented by a <em>M</em> x <em>N</em> x 3 numpy ndarray.</li>
 <li><strong><code>original</code></strong>: A list containing a series of frames that make up the video. </li>
-</ul>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
 <li><strong><code>cv2.imshow()</code></strong>: Displays an input frame. </li>
+<li><strong><code>cv2.waitKey()</code></strong>: Used to introduce delay between frames.</li>
+<li><strong><code>cv2.destroyWindow()</code></strong>: Will close a given window.</li>
 </ul>
 
 </div>
 </div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong><code>cv2.waitKey()</code></strong>: Waits for a key to be pressed for the specified amount of time, used to introduce delay between frames.</li>
-</ul>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong><code>cv2.destroyWindow()</code></strong>:Will close a given window.</li>
-</ul>
-
-</div>
-</div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12731,11 +12687,24 @@ B. Identify pixels in the current frame that do not match the background.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Smooth-the-image">Smooth the image<a class="anchor-link" href="#Smooth-the-image">&#182;</a></h1><p>Gaussian Blur
-<img src="figures/2dgaussian.png" alt="2D Gaussian" width="150"></p>
+<br />
+<img src="figures/2dgaussian.png" alt="2D Gaussian" width="250" align="left">
+<img src="figures/gaussian-kernel.png" alt="Gaussian kernel" width="250" align="right">
+<br />
+<br /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 \begin{equation}
 G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2}}}
 \end{equation}<p>Implement in Python:</p>
-<p><code>smooth_frame = cv2.GaussianBlur(gray_frame, (sigma_gx, sigma_gy), 0)</code></p>
+<p><code>smooth_frame = cv2.GaussianBlur(gray_frame, (kx, ky), 0)</code></p>
 
 </div>
 </div>
@@ -12745,7 +12714,7 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Smooth the image</h1></center><p><img src="figures/smooth_images.png" alt="AppScreenShots" width="960"></p>
+<center><h1>Smooth the image</h1></center><p><img src="figures/smooth_images_k.jpg" alt="Smooth images" width="960"></p>
 
 </div>
 </div>
@@ -12764,14 +12733,14 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1"># Define Gaussian kernel standard deviation</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1"># Define Gaussian kernel size</span>
 
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
     
     <span class="c1"># Apply a Gaussian blur to the gray scale frame </span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Smooth&#39;</span><span class="p">,</span> <span class="n">smooth_frame</span><span class="p">)</span>
 
@@ -12785,17 +12754,6 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 </div>
 
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Smooth the image</h1></center><center><video width="640" height="480" align="center" controls>
-  <source src="video/smooth.mp4" type="video/mp4">
-</video></center>
-</div>
-</div>
 </div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12811,11 +12769,11 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="n">current_frame</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">current_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Smooth&#39;</span><span class="p">,</span><span class="n">smooth_frame</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span> 
         <span class="k">break</span>
@@ -12844,14 +12802,25 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Calculate-the-running-average">Calculate the running average<a class="anchor-link" href="#Calculate-the-running-average">&#182;</a></h1><p>At each <em>t</em>, calculate at each pixel (x,y): 
+<center><h1>Smooth the image</h1></center><center><video width="640" height="480" align="center" controls>
+  <source src="video/smooth.mp4" type="video/mp4">
+</video></center>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Calculate-the-running-average">Calculate the running average<a class="anchor-link" href="#Calculate-the-running-average">&#182;</a></h1><p>At each time step, <em>t</em>, calculate at each pixel (x,y): 
 \begin{equation}
 \mathbf{R}(x,y,t) = (1-\alpha)\mathbf{R}(x,y,t-1) + \alpha\mathbf{F}(x,y,t)
 \end{equation}</p>
 <ul>
 <li>$\mathbf{R}:$  Running average </li>
 <li>$\mathbf{F}:$ Frame being added to the running average</li>
-<li>$\alpha:$ How heavily to weight the new frame in the running average </li>
+<li>$\alpha:$ How heavily to weight the new frame</li>
 </ul>
 <p>Implement in Python:</p>
 <p><code>cv2.accumulateWeighted(np.float32(smooth_frame), running_avg, alpha)</code></p>
@@ -12891,11 +12860,11 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># Define weighting coefficient</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># Define variable for running average</span>
 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="c1"># Otherwise, update running average with new smooth frame</span>
@@ -12916,18 +12885,6 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 </div>
 
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Calculate the running average</h1></center>
-<center><video width="640" height="480" align="center" controls>
-  <source src="video/running.mp4" type="video/mp4">
-</video></center>
-</div>
-</div>
 </div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12946,11 +12903,11 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c1"># Define weighting coefficient</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># Define variable for running average</span>
 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="n">current_frame</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">current_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -12981,6 +12938,18 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 </div>
 </div>
 
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Calculate the running average</h1></center>
+<center><video width="640" height="480" align="center" controls>
+  <source src="video/running.mp4" type="video/mp4">
+</video></center>
+</div>
+</div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13029,12 +12998,11 @@ Implement in Python:</p>
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span> 
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
-
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
 
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -13058,18 +13026,6 @@ Implement in Python:</p>
 </div>
 </div>
 
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Calculate the difference</h1><center>
-<center><video width="640" height="480" controls>
-  <source src="video/colordiff.mp4" type="video/mp4">
-</video></center>
-</div>
-</div>
 </div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13088,11 +13044,11 @@ Implement in Python:</p>
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c1"># Define weighting coefficient</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># Define variable for running average</span>
 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="n">current_frame</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">current_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -13120,6 +13076,18 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Calculate the difference</h1><center>
+<center><video width="640" height="480" controls>
+  <source src="video/colordiff.mp4" type="video/mp4">
+</video></center>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Threshold-the-difference">Threshold the difference<a class="anchor-link" href="#Threshold-the-difference">&#182;</a></h1><p>Deciding what constitutes motion and what is just noise.
 <img src="figures/diffcolor73.png" alt="Difference frame" width="960"></p>
 
@@ -13141,14 +13109,14 @@ Implement in Python:</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">thresh</span> <span class="o">=</span> <span class="mi">35</span> <span class="c1"># All pixels with differences above this value will be set to 1</span>
+
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
-
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
@@ -13171,18 +13139,6 @@ Implement in Python:</p>
 </div>
 </div>
 
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Threshold the difference</h1></center>
-<center><video width="640" height="480" align="center" controls>
-  <source src="video/thresh.mp4" type="video/mp4">
-</video></center>
-</div>
-</div>
 </div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13201,11 +13157,11 @@ Implement in Python:</p>
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c1"># Define weighting coefficient</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># Define variable for running average</span>
 
-<span class="n">sigma_g</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="n">current_frame</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">current_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">sigma_g</span><span class="p">,</span> <span class="n">sigma_g</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -13236,10 +13192,23 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<center><h1>Threshold the difference</h1></center>
+<center><video width="640" height="480" align="center" controls>
+  <source src="video/thresh.mp4" type="video/mp4">
+</video></center>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="2.-Is-that-moving-thing-a-train?">2. Is that moving thing a train?<a class="anchor-link" href="#2.-Is-that-moving-thing-a-train?">&#182;</a></h1>
 </div>
 </div>
-</div><center><video width="640" height="480" align="center" controls>
+</div><br />
+<center><video width="960" height="460" align="center" controls>
   <source src="video/thresh-motion.mp4" type="video/mp4">
 </video></center></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
@@ -13334,29 +13303,6 @@ Implement in Python:</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">160</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frame number&#39;</span><span class="p">);</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of ROI in motion&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fraction of ROIs in motion over time&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">left_fractions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Left ROI&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">right_fractions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Right ROI&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figures/left-and-right.jpg&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13364,7 +13310,7 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center><h1>Track activity in ROIs separately</h1></center>
-<center><video width="1060" height="460" align="center" controls>
+<center><video width="1260" height="460" align="center" controls>
   <source src="video/green-rois-plus-plot.mp4" type="video/mp4">
 </video></center>
 </div>
@@ -13375,7 +13321,7 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><center><h1>Track activity in ROIs separately</h1></center>
+<p><center><h1>Real-time direction detection</h1></center>
 <img src="figures/left-and-right.jpg" alt="Fraction in motion" width="860"></p>
 
 </div>
@@ -13527,7 +13473,7 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Recap-of-parameters">Recap of parameters<a class="anchor-link" href="#Recap-of-parameters">&#182;</a></h1><ul>
-<li><code>sigma_g</code> : Gaussian blur standard deviation</li>
+<li><code>k</code> : Size of the kernel used for Gaussian blur.</li>
 </ul>
 
 </div>
@@ -13539,7 +13485,7 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><code>area_thresh</code> : Minimum fraction of ROI in motion to consider train-like</li>
+<li><code>area_thresh</code> : Minimum fraction of ROI that must be "in motion" to be considered train-like.</li>
 </ul>
 
 </div>
@@ -13551,7 +13497,7 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><code>alpha</code> : How heavily to weigh new frame in running average</li>
+<li><code>alpha</code> : How heavily to weigh each new frame in running average.</li>
 </ul>
 
 </div>
@@ -13563,7 +13509,7 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><code>history_length</code> : Number of frames required to be considered a train</li>
+<li><code>history_length</code> : Number of frames in motion required to be considered a train.</li>
 </ul>
 
 </div>
@@ -13574,8 +13520,8 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resolution-+-sigma_g">Resolution + <code>sigma_g</code><a class="anchor-link" href="#Resolution-+-sigma_g">&#182;</a></h1><p>Change <code>sigma_g</code> proportionally with the resolution.</p>
-<p><img src="figures/gaussian-color-edit.png" alt="Gaussian" width="540" align="center"></p>
+<h1 id="Resolution-+-k">Resolution + <code>k</code><a class="anchor-link" href="#Resolution-+-k">&#182;</a></h1><p>Change <code>k</code> proportionally with the resolution.</p>
+<p><img src="figures/gaussian-color-k.jpg" alt="Gaussian" width="540" align="center"></p>
 
 </div>
 </div>
@@ -13587,8 +13533,8 @@ Implement in Python:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Neighborhood used to determine pixel value $\approx 3\sigma$  </li>
-<li>$\sigma$ should reduce linearly with reduction in resolution </li>
+<li>Kernel size determines neighborhood to use in computing each pixel</li>
+<li>Want to scale that neighborhood with the size of the image</li>
 </ul>
 
 </div>
@@ -13600,8 +13546,8 @@ Implement in Python:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><h1>Resolution and <code>sigma_g</code></h1>
-</center><center><img src='figures/sigmag-resolution.jpg' alt="Gaussian" width="860" align="center"></center>
+<center><h1>Resolution and <code>k</code></h1>
+</center><center><img src='figures/sigmag-resolution-k.jpg' alt="Gaussian" width="860" align="center"></center>
 </div>
 </div>
 </div></section><section>
