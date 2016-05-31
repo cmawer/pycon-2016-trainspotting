@@ -12305,7 +12305,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><img src="figures/caltrain_tweet.jpg" alt="Tweet" width="425" style="horizontal-align:middle"></center>
+<center><img src="figures/appdemo.gif" alt="AppScreenShots" width="350"></center>
 </div>
 </div>
 </div></section></section><section><section>
@@ -12314,7 +12314,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><img src="figures/appdemo.gif" alt="AppScreenShots" width="350"></center>
+<center><img src="figures/caltrain_tweet.jpg" alt="Tweet" width="425" style="horizontal-align:middle"></center>
 </div>
 </div>
 </div></section></section><section><section>
@@ -12625,7 +12625,7 @@ B. Identify pixels in the current frame that do not match the background.</p>
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="c1"># Convert the frame to one channel (e.g. gray scale)</span>
-    <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n"><strong>gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Gray scale&#39;</span><span class="p">,</span><span class="n">gray_frame</span><span class="p">)</span>
     
@@ -12733,14 +12733,14 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1"># Define Gaussian kernel size</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n"><strong>k</span> <span class="o">=</span> <span class="mi">31</strong></span> <span class="c1"># Define Gaussian kernel size</span>
 
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
     
     <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
     
     <span class="c1"># Apply a Gaussian blur to the gray scale frame </span>
-    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n"><strong>smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Smooth&#39;</span><span class="p">,</span> <span class="n">smooth_frame</span><span class="p">)</span>
 
@@ -12857,8 +12857,8 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># Define weighting coefficient</span>
-<span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1"># Define variable for running average</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n"><strong>alpha</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># Define weighting coefficient</span>
+<span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</strong></span> <span class="c1"># Define variable for running average</span>
 
 <span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
@@ -12868,10 +12868,10 @@ G(x,y) = Ae^{\frac{-(x-\mu_x)^2}{2\sigma_x^{2}}+\frac{-(y-\mu_y)^2}{2\sigma_y^{2
     
     <span class="c1"># If this is the first frame, making running avg current frame</span>
     <span class="c1"># Otherwise, update running average with new smooth frame</span>
-    <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k"><strong>if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Running average&#39;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">convertScaleAbs</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</span>
 
@@ -13009,7 +13009,7 @@ Implement in Python:</p>
         <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
         
     <span class="c1"># Find |difference| between current smoothed frame and running average</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</span>
+    <span class="n"><strong>diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</strong></span>
     
     <span class="c1"># Then add current frame to running average after</span>
     <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
@@ -13105,10 +13105,10 @@ Implement in Python:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">thresh</span> <span class="o">=</span> <span class="mi">35</span> <span class="c1"># All pixels with differences above this value will be set to 1</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n"><strong>thresh</span> <span class="o">=</span> <span class="mi">35</strong></span> <span class="c1"># All pixels with differences above this value will be set to 1</span>
 
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> 
@@ -13125,7 +13125,7 @@ Implement in Python:</p>
     <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
     
     <span class="c1"># For all pixels with a difference &gt; thresh, turn pixel to 1, otherwise 0</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">subtracted</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+    <span class="n"><strong>_</span><span class="p">,</span> <span class="n">subtracted</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</strong></span>
     
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Thresholded difference&#39;</span><span class="p">,</span> <span class="n">subtracted</span><span class="p">)</span>
     
