@@ -1602,6 +1602,53 @@ cv2.accumulateWeighted(np.float32(smooth_frame), running_avg, alpha)
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="c"># Start streaming images from your computer camera</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+
+<span class="c"># Define the parameters needed for motion detection</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c"># Define weighting coefficient for running average</span>
+<span class="n">motion_thresh</span> <span class="o">=</span> <span class="mi">35</span> <span class="c"># Threshold for what difference in pixels  </span>
+<span class="n">running_avg</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># Initialize variable for running average</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">current_frame</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">current_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">smooth_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c"># If this is the first frame, making running avg current frame</span>
+    <span class="k">if</span> <span class="n">running_avg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">running_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">)</span> 
+
+    <span class="c"># Find absolute difference between the current smoothed frame and the running average</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">running_avg</span><span class="p">))</span>
+
+    <span class="c"># Then add current frame to running average after</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">smooth_frame</span><span class="p">),</span> <span class="n">running_avg</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+    <span class="c"># For all pixels with a difference &gt; thresh, turn pixel to 255, otherwise 0</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">subtracted</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">motion_thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&#39;Actual image&#39;</span><span class="p">,</span> <span class="n">current_frame</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&#39;Gray-scale&#39;</span><span class="p">,</span> <span class="n">gray_frame</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&#39;Smooth&#39;</span><span class="p">,</span> <span class="n">smooth_frame</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&#39;Difference&#39;</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&#39;Thresholded difference&#39;</span><span class="p">,</span> <span class="n">subtracted</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;q&#39;</span><span class="p">):</span> 
+        <span class="k">break</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">feed</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
